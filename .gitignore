@@ -1,0 +1,23 @@
+# Miscellaneous default rules
+*.classpath
+*.idea
+*.iml
+*.ipr
+*.iws
+.project
+.settings
+.DS_Store
+.gradle
+build/
+local.properties
+*.log
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/android/app/src/debug/
+/android/app/src/profile/
+/android/.gradle/
+*.g.dart
+*.freezed.dart
