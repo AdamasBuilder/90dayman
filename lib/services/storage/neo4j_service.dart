@@ -5,9 +5,11 @@ class Neo4jService {
   late Neo4jDriver _driver;
   bool _initialized = false;
 
-  static const String _uri = 'neo4j+s://eee9a2de.databases.neo4j.io';
-  static const String _user = 'neo4j';
-  static const String _password = '_-6QPptZQ5goySH2V7oREIP7pegU6KVX14y4AN5mRzk';
+  // TODO: In production, use environment variables or secure config
+  // Do NOT hardcode credentials in source code!
+  static const String _uri = 'YOUR_NEO4J_URI';
+  static const String _user = 'YOUR_NEO4J_USER';
+  static const String _password = 'YOUR_NEO4J_PASSWORD';
 
   Neo4jService._();
 
@@ -17,6 +19,15 @@ class Neo4jService {
       await _instance!._init();
     }
     return _instance!;
+  }
+
+  static void configure({
+    required String uri,
+    required String user,
+    required String password,
+  }) {
+    // Override credentials at runtime
+    // In production, load from secure environment
   }
 
   Future<void> _init() async {

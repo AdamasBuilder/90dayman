@@ -5,7 +5,9 @@ import '../../domain/entities/event.dart';
 import 'ai_fallback_generator.dart';
 
 class AIService {
-  static const String _apiKey = 'AIzaSyB3KKU9tawxVm7bBVCK1ldotj5xZb0pp6Y';
+  // TODO: In production, use environment variables or secure config
+  // Do NOT hardcode API keys in source code!
+  static const String _apiKey = 'YOUR_GEMINI_API_KEY';
   static AIService? _instance;
   GenerativeModel? _model;
   bool _initialized = false;
