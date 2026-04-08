@@ -43,20 +43,38 @@ flutter pub get
 flutter run
 ```
 
-## Configurazione Gemini API (Opzionale)
+## Configurazione
 
-L'app funziona anche senza API key usando domande pre-programmate.
+### 1. Credenziali Locali
 
-Per abilitare Gemini AI:
-
-1. Vai su [Google AI Studio](https://aistudio.google.com/apikey)
-2. Crea una nuova API key
-3. Apri `lib/core/constants/app_constants.dart`
-4. Sostituisci `YOUR_API_KEY_HERE` con la tua key:
+Crea il file `lib/core/config/app_config_local.dart` con le tue credenziali:
 
 ```dart
-static const String geminiApiKey = 'LA_TUA_API_KEY_QUI';
+class AppConfig {
+  // Neo4j Configuration
+  static const String neo4jUri = 'neo4j+s://xxx.databases.neo4j.io';
+  static const String neo4jUser = 'neo4j';
+  static const String neo4jPassword = 'TUAPASSWORD';
+
+  // Google Gemini AI
+  static const String geminiApiKey = 'TUAGEMINIAPIKEY';
+
+  static const String appName = 'Uomo in 90 Giorni';
+  static const int onboardingQuestionCount = 50;
+}
 ```
+
+**Nota**: Questo file è ignorato da Git per sicurezza.
+
+### 2. Neo4j
+- Crea un account su https://neo4j.com/cloud/aura/
+- Crea un database AuraDB Free
+- Copia l'URI del database in app_config_local.dart
+
+### 3. Google Gemini
+- Vai su https://aistudio.google.com/app/apkey
+- Crea una nuova API key
+- Copiala in app_config_local.dart
 
 ## Struttura Progetto
 

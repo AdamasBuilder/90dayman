@@ -21,3 +21,9 @@ local.properties
 /android/.gradle/
 *.g.dart
 *.freezed.dart
+lib/core/config/app_config_local.dart
+.env
+.env.local
+credentials.json
+*.pem
+*.key

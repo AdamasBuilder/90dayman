@@ -1,15 +1,15 @@
 import 'package:dart_neo4j/dart_neo4j.dart';
+import '../../core/config/app_config_local.dart';
 
 class Neo4jService {
   static Neo4jService? _instance;
   late Neo4jDriver _driver;
   bool _initialized = false;
 
-  // TODO: In production, use environment variables or secure config
-  // Do NOT hardcode credentials in source code!
-  static const String _uri = 'YOUR_NEO4J_URI';
-  static const String _user = 'YOUR_NEO4J_USER';
-  static const String _password = 'YOUR_NEO4J_PASSWORD';
+  // Load from local config (not committed to git)
+  static String get _uri => AppConfig.neo4jUri;
+  static String get _user => AppConfig.neo4jUser;
+  static String get _password => AppConfig.neo4jPassword;
 
   Neo4jService._();
 
