@@ -27,3 +27,4 @@ lib/core/config/app_config_local.dart
 credentials.json
 *.pem
 *.key
+ios/Runner/GoogleService-Info.plist
