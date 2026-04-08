@@ -9,57 +9,45 @@
 - ✅ Android APK funzionante
 - ✅ Web buildato e zippato (`uomo90-web.zip`)
 - ✅ GitHub repository configurato
-- ✅ Neo4j configurato
-- ✅ Gemini AI configurato
+- ✅ Firebase iOS configurato
+- ✅ Neo4j + Gemini configurati
 
-## Credentials (LOCAL ONLY - NOT ON GITHUB)
+## Credentials (LOCAL ONLY)
 File: `lib/core/config/app_config_local.dart`
-- Neo4j URI: `neo4j+s://eee9a2de.databases.neo4j.io`
-- Neo4j User: `neo4j`
-- Neo4j Password: `GuIbM7ZZNRnkEeoCdvlyJp_LohG2A9Vl579uPXWQXmQ` (DA CAMBIARE!)
-- Gemini API: `AIzaSyDI7myuqIQAl9t1fQ0q4GYy2SUuHz39mrU`
-
-## Security Notes
-- File `app_config_local.dart` è in `.gitignore`
-- NON committare MAI credenziali
-- Password Neo4j precedente era esposta - UTENTE DEVE CAMBIARLA
+- Vedere file locale per credenziali
+- **NON committare su GitHub**
 
 ## Features Implemented
-1. **Onboarding**: 50 domande scientifiche (Stoic Attitudes, Grit, DERS, Big Five, PSS)
-2. **Diario**: Eventi con emotività (1-6) e reazione (1-6)
-3. **AI**: Gemini per riflessioni e messaggi
-4. **Neo4j**: Graph-RAG per pattern comportamentali
-5. **Push Notifications**: Placeholder (richiede Firebase per implementazione reale)
+1. **Onboarding**: 50 domande scientifiche
+2. **Diario**: Eventi con emotività e reazione
+3. **AI**: Gemini per riflessioni
+4. **Firebase**: Push notifications (da completare)
 
-## Next Steps (when resuming)
-1. Testare web su Hostinger
-2. Implementare push notifications reali con Firebase
-3. Build iOS (richiede Mac o Codemagic)
-4. Migliorare UI/UX
+## 🎯 TODO Web App - Pianificato
 
-## Key Files
-- `lib/services/ai/ai_service.dart` - AI Gemini
-- `lib/services/storage/neo4j_service.dart` - Neo4j
-- `lib/services/notifications/notification_service.dart` - Notifications
-- `lib/presentation/onboarding/onboarding_screen.dart` - 50 domande
-- `lib/presentation/home/home_screen.dart` - Main screen
-- `lib/core/config/app_config_local.dart` - Credenziali locali
+### FISSA 1: Fix Bug UI
+- [ ] Pulsante "Avanti" onboarding non funziona
+- [ ] Testo va a capo su mobile
 
-## Commands
-```bash
-# Build Android
-flutter build apk --debug
+### FISSA 2: Push Notifications "stile amico"
+- [ ] Firebase Web SDK
+- [ ] Messaggio automatico all'apertura
 
-# Build Web
-flutter build web --release
+### FISSA 3: Riepilogo Serale (Modal Blocco)
+- [ ] Check orario (dopo 18:00)
+- [ ] Schermata full-screen
+- [ ] Input evento + emotività/reazione
 
-# Run on emulator
-flutter run -d emulator-5554
-```
+### FISSA 4: Migliorie
+- [ ] Progress bar chiara
+- [ ] localStorage persistence
+- [ ] PWA installabile
 
 ## Tech Stack
 - Flutter 3.41.6
-- Riverpod (state management)
-- dart_neo4j (Graph database)
-- google_generative_ai (Gemini)
-- SharedPreferences (local storage)
+- Riverpod
+- Neo4j (Graph)
+- Gemini AI
+- Firebase (Notifications)
+
+## ⏱️ Tempo Stimato: ~3-4 ore
