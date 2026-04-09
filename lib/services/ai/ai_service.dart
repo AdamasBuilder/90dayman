@@ -1,13 +1,12 @@
-import 'dart:convert';
 import 'package:google_generative_ai/google_generative_ai.dart';
 import '../../domain/entities/user.dart';
 import '../../domain/entities/event.dart';
-import '../../core/config/app_config_local.dart';
+import '../../core/config/app_config.dart';
 import 'ai_fallback_generator.dart';
 
 class AIService {
   // Load from local config (not committed to git)
-  static String get _apiKey => AppConfig.geminiApiKey;
+  static String get _apiKey => AppConfig.geminiApiKeyFinal;
   static AIService? _instance;
   GenerativeModel? _model;
   bool _initialized = false;

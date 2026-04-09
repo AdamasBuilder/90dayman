@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../core/theme/app_theme.dart';
 import '../../domain/entities/onboarding_question.dart';
-import '../../services/storage/database_service.dart';
 import '../providers.dart';
 import 'onboarding_profile_screen.dart';
 

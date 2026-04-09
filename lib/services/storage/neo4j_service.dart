@@ -1,15 +1,14 @@
 import 'package:dart_neo4j/dart_neo4j.dart';
-import '../../core/config/app_config_local.dart';
+import '../../core/config/app_config.dart';
 
 class Neo4jService {
   static Neo4jService? _instance;
   late Neo4jDriver _driver;
   bool _initialized = false;
 
-  // Load from local config (not committed to git)
-  static String get _uri => AppConfig.neo4jUri;
+  static String get _uri => AppConfig.neo4jUriFinal;
   static String get _user => AppConfig.neo4jUser;
-  static String get _password => AppConfig.neo4jPassword;
+  static String get _password => AppConfig.neo4jPasswordFinal;
 
   Neo4jService._();
 

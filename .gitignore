@@ -22,11 +22,12 @@ local.properties
 *.g.dart
 *.freezed.dart
 lib/core/config/app_config_local.dart
+lib/core/config/app_config.dart
 ios/Runner/GoogleService-Info.plist
+android/app/google-services.json
 .env
 .env.local
 credentials.json
 *.pem
 *.key
 *.plist
-ios/Runner/GoogleService-Info.plist
