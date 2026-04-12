@@ -19,7 +19,7 @@ NEO4J_DATABASE = os.getenv("NEO4J_DATABASE", "")
 
 # Gemini
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
-GEMINI_MODEL = "gemini-2.0-flash-001"
+GEMINI_MODEL = "gemini-2.5-flash"
 GEMINI_ENDPOINT = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 
 # Web App (Google Apps Script URL — da aggiornare dopo deploy GAS)
