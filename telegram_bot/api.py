@@ -182,11 +182,20 @@ def get_today_question(_: bool = Depends(verify_secret)):
     if question:
         return question
 
-    # Genera nuova domanda
-    context = brain.get_full_context(YOUR_TELEGRAM_ID)
-    text = generate_morning_question(context)
-    question_id = brain.save_question(YOUR_TELEGRAM_ID, text, "ondemand")
-    return {"question_id": question_id, "text": text, "type": "ondemand", "answer": None}
+    # Genera nuova domanda — fallback se Gemini non risponde
+    try:
+        context = brain.get_full_context(YOUR_TELEGRAM_ID)
+        text = generate_morning_question(context)
+        question_id = brain.save_question(YOUR_TELEGRAM_ID, text, "ondemand")
+        return {"question_id": question_id, "text": text, "type": "ondemand", "answer": None}
+    except Exception as e:
+        logger.error(f"Gemini question error: {e}")
+        return {
+            "question_id": None,
+            "text": "Cosa hai rimandato oggi che potevi fare adesso?",
+            "type": "fallback",
+            "answer": None,
+        }
 
 @app.post("/api/question/answer")
 def answer_question(body: QuestionAnswer, _: bool = Depends(verify_secret)):
@@ -202,9 +211,13 @@ def answer_question(body: QuestionAnswer, _: bool = Depends(verify_secret)):
 @app.get("/api/ai/one-percent")
 def one_percent(_: bool = Depends(verify_secret)):
     """Genera il suggerimento 1% del giorno."""
-    context = brain.get_full_context(YOUR_TELEGRAM_ID)
-    suggestion = generate_one_percent_suggestion(context)
-    return {"suggestion": suggestion}
+    try:
+        context = brain.get_full_context(YOUR_TELEGRAM_ID)
+        suggestion = generate_one_percent_suggestion(context)
+        return {"suggestion": suggestion}
+    except Exception as e:
+        logger.error(f"Gemini one-percent error: {e}")
+        return {"suggestion": "🎯 Fai una cosa che hai rimandato da più di 3 giorni.\n💡 L'azione piccola rompe il blocco."}
 
 @app.post("/api/ai/chat")
 def ai_chat(body: dict, _: bool = Depends(verify_secret)):
@@ -212,6 +225,10 @@ def ai_chat(body: dict, _: bool = Depends(verify_secret)):
     message = body.get("message", "")
     if not message:
         raise HTTPException(status_code=400, detail="Messaggio vuoto")
-    context = brain.get_full_context(YOUR_TELEGRAM_ID)
-    reply = generate_conversation_reply(message, context)
-    return {"reply": reply}
+    try:
+        context = brain.get_full_context(YOUR_TELEGRAM_ID)
+        reply = generate_conversation_reply(message, context)
+        return {"reply": reply}
+    except Exception as e:
+        logger.error(f"Gemini chat error: {e}")
+        return {"reply": "Il coach è momentaneamente offline. Riprova tra qualche minuto."}
